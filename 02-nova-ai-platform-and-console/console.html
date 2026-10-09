@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova AI — Agent Console &amp; Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="console.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="console-body">
+  <div class="console-layout">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="console-sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="sidebar-brand" title="Back to Landing Page">
+          <div class="brand-icon">✦</div>
+          <span>Nova<strong>Console</strong></span>
+        </a>
+        <div class="workspace-pill">
+          <span class="status-dot green"></span>
+          <span>Prod-Cluster-US</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">PLATFORM</div>
+        <button class="side-btn active" data-tab="playground">
+          <span class="side-icon">💬</span>
+          <span>Agent Playground</span>
+        </button>
+        <button class="side-btn" data-tab="workflows">
+          <span class="side-icon">⚡</span>
+          <span>Pipelines &amp; Runs</span>
+          <span class="side-badge">4 Active</span>
+        </button>
+        <button class="side-btn" data-tab="memory">
+          <span class="side-icon">🧠</span>
+          <span>Vector Memory</span>
+        </button>
+        <button class="side-btn" data-tab="tools">
+          <span class="side-icon">🛠️</span>
+          <span>Tool Sandboxes</span>
+        </button>
+
+        <div class="nav-section-title">OBSERVABILITY</div>
+        <button class="side-btn" data-tab="traces">
+          <span class="side-icon">📊</span>
+          <span>Trace Replay</span>
+        </button>
+        <button class="side-btn" data-tab="keys">
+          <span class="side-icon">🔑</span>
+          <span>API Credentials</span>
+        </button>
+      </nav>
+
+      <!-- Agent Profile Card -->
+      <div class="sidebar-footer">
+        <div class="agent-profile-box">
+          <div class="agent-avatar">🤖</div>
+          <div class="agent-info">
+            <div class="agent-name">DevOps Sentinel v2.4</div>
+            <div class="agent-status">Sandboxed MicroVM Active</div>
+          </div>
+        </div>
+        <a href="index.html" class="back-link">← Return to Landing Page</a>
+      </div>
+    </aside>
+
+    <!-- CENTER PLAYGROUND / CHAT WORKSPACE -->
+    <main class="console-main">
+      <!-- Top Control Bar -->
+      <header class="console-topbar">
+        <div class="topbar-left">
+          <div class="breadcrumb">
+            <span class="crumb-dim">Agents</span>
+            <span class="crumb-separator">/</span>
+            <span class="crumb-active" id="activeAgentName">DevOps Sentinel</span>
+          </div>
+          <span class="pill-chip">Autonomous Mode</span>
+        </div>
+
+        <div class="topbar-right">
+          <!-- Model Selector -->
+          <div class="model-picker-group">
+            <label for="modelSelect">Routing Model:</label>
+            <select id="modelSelect" class="console-select">
+              <option value="gemini-1.5-pro">Gemini 1.5 Pro (Neural Router)</option>
+              <option value="claude-3-5-sonnet">Claude 3.5 Sonnet</option>
+              <option value="gpt-4o">GPT-4o Omnimodal</option>
+              <option value="deepseek-r1">DeepSeek R1 (Reasoning)</option>
+            </select>
+          </div>
+
+          <button id="clearChatBtn" class="btn btn-sm btn-secondary" title="Clear message thread">
+            <span>🗑️ Clear Thread</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Message History Thread -->
+      <section class="messages-container" id="messagesContainer">
+        <!-- Message 1: Initial System Greeting -->
+        <div class="message-row agent-msg">
+          <div class="msg-avatar">🤖</div>
+          <div class="msg-bubble">
+            <div class="msg-sender-row">
+              <span class="msg-sender">DevOps Sentinel</span>
+              <span class="msg-time">Just now</span>
+            </div>
+            <div class="msg-content">
+              <p>Hello! I am your autonomous infrastructure and code optimization agent. I have access to your Kubernetes cluster metrics, GitHub repositories, and AWS microVM tool sandboxes.</p>
+              <p>You can ask me to triage cloud incidents, analyze slow queries, synthesize Terraform configurations, or run live diagnostic tool calls.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Prompt Input Bar -->
+      <footer class="console-composer">
+        <!-- Quick Prompts Chips -->
+        <div class="quick-prompts">
+          <span class="quick-label">Try Prompt:</span>
+          <button class="prompt-chip" onclick="fillPrompt('Audit AWS IAM policies and flag dormant API keys')">
+            🛡️ Audit IAM Policies
+          </button>
+          <button class="prompt-chip" onclick="fillPrompt('Analyze PostgreSQL slow query log and propose index optimization')">
+            ⚡ Slow Query Optimizer
+          </button>
+          <button class="prompt-chip" onclick="fillPrompt('Triage Kubernetes pods crashlooping in eu-west production cluster')">
+            ☸️ Triage K8s Pods
+          </button>
+        </div>
+
+        <!-- Composer Box -->
+        <form class="composer-form" id="composerForm" onsubmit="handleSendMessage(event)">
+          <div class="composer-inner">
+            <textarea 
+              id="promptInput" 
+              placeholder="Ask the agent to perform an autonomous task or trigger a tool..."
+              rows="1"
+              autocomplete="off"
+            ></textarea>
+            
+            <div class="composer-actions">
+              <div class="composer-tools-indicator">
+                <span class="tool-tag">🛠️ 6 Tools Active</span>
+                <span class="tool-tag">🧠 Vector Store Connected</span>
+              </div>
+              <button type="submit" id="sendBtn" class="btn btn-primary btn-sm">
+                <span>Run Agent ⚡</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </footer>
+    </main>
+
+    <!-- RIGHT INSPECTOR PANE (TELEMETRY & MEMORY) -->
+    <aside class="console-inspector">
+      <div class="inspector-header">
+        <h3>Live Telemetry &amp; Traces</h3>
+        <span class="live-dot"><span class="pulse-dot"></span> LIVE</span>
+      </div>
+
+      <!-- Execution Performance Metrics -->
+      <div class="inspector-card">
+        <h4>Latency Breakdown</h4>
+        <div class="telemetry-bar-group">
+          <div class="telem-row">
+            <span>Neural Router</span>
+            <strong id="statRouterLat">14ms</strong>
+          </div>
+          <div class="telem-row">
+            <span>Tool Sandbox VM</span>
+            <strong id="statToolLat">42ms</strong>
+          </div>
+          <div class="telem-row">
+            <span>Token Generation</span>
+            <strong id="statGenLat">186ms</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Token Gauge -->
+      <div class="inspector-card">
+        <h4>Token Consumption</h4>
+        <div class="token-stats-grid">
+          <div class="token-box">
+            <span class="token-lbl">Prompt</span>
+            <span class="token-val" id="statPromptTokens">480</span>
+          </div>
+          <div class="token-box">
+            <span class="token-lbl">Output</span>
+            <span class="token-val" id="statOutputTokens">320</span>
+          </div>
+          <div class="token-box highlight">
+            <span class="token-lbl">Cached (Saved)</span>
+            <span class="token-val" id="statCachedTokens">1,240</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Episodic Vector Memory Context -->
+      <div class="inspector-card">
+        <h4>Retrieved Memory Fragments</h4>
+        <div class="memory-list" id="memoryList">
+          <div class="memory-item">
+            <div class="memory-meta">
+              <span class="mem-tag">K8s-Config</span>
+              <span class="mem-score">0.96 match</span>
+            </div>
+            <p class="mem-snippet">Cluster: prod-us-east-1, v1.31, ingress controller nginx-v2.8...</p>
+          </div>
+          <div class="memory-item">
+            <div class="memory-meta">
+              <span class="mem-tag">RDS-Postgres</span>
+              <span class="mem-score">0.91 match</span>
+            </div>
+            <p class="mem-snippet">Instance db.r6g.2xlarge, max_connections=500, pg_stat_statements enabled...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- MicroVM Sandbox Container Health -->
+      <div class="inspector-card">
+        <h4>Ephemeral Tool MicroVM</h4>
+        <div class="sandbox-status-box">
+          <div class="telem-row">
+            <span>Container ID:</span>
+            <code class="code-pill">vm-x8912-safe</code>
+          </div>
+          <div class="telem-row">
+            <span>Isolation Level:</span>
+            <span class="badge-success">Firecracker Zero-Trust</span>
+          </div>
+          <div class="telem-row">
+            <span>Memory Allocated:</span>
+            <span>64 MB / 512 MB</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="console.js"></script>
+</body>
+</html>

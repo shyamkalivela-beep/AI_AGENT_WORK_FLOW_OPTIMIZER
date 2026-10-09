@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent Workflow Optimizer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="logo-badge">⚡ AGY</div>
+        <div>
+          <h1>AI Agent Workflow Optimizer</h1>
+          <p class="subtitle">Streamline agent pipelines, eliminate redundant token roundtrips, and benchmark performance.</p>
+        </div>
+      </div>
+      <div class="header-stats">
+        <div class="stat-pill">
+          <span class="stat-label">Total Workflows</span>
+          <span class="stat-value" id="statTotal">0</span>
+        </div>
+        <div class="stat-pill highlight">
+          <span class="stat-label">Avg Speedup</span>
+          <span class="stat-value" id="statSpeedup">0%</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+      <!-- Input Form Card -->
+      <section class="card form-card">
+        <div class="card-title-row">
+          <h2>Create &amp; Optimize Workflow</h2>
+          <span class="badge-hint">Constraint: Unique Task per Category</span>
+        </div>
+
+        <div class="form-box">
+          <div class="form-group flex-2">
+            <label for="taskInput">Workflow Task Description</label>
+            <input 
+              type="text" 
+              id="taskInput" 
+              placeholder="Enter task (e.g., Get weather and summarize news)"
+              autocomplete="off"
+            >
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="categoryInput">Category</label>
+              <select id="categoryInput">
+                <option value="">Select Category</option>
+                <option value="Data Analysis">Data Analysis</option>
+                <option value="Customer Support">Customer Support</option>
+                <option value="Research">Research</option>
+                <option value="Automation">Automation</option>
+              </select>
+            </div>
+
+            <div class="form-group flex-1">
+              <label for="tagInput">Tags (comma-separated)</label>
+              <input 
+                type="text" 
+                id="tagInput" 
+                placeholder="e.g. urgent, optimized, api"
+                autocomplete="off"
+              >
+            </div>
+
+            <div class="form-actions">
+              <button id="saveBtn" class="btn btn-primary" onclick="saveWorkflow()">
+                <span>⚡ Optimize &amp; Save</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick suggestion chips -->
+        <div class="quick-chips">
+          <span class="chips-label">Try preset:</span>
+          <button class="chip-btn" onclick="applyPreset('Synthesize quarterly earnings calls', 'Data Analysis', 'finance, summary')">Quarterly Earnings</button>
+          <button class="chip-btn" onclick="applyPreset('Triage customer Zendesk tickets', 'Customer Support', 'urgent, triage')">Support Triage</button>
+          <button class="chip-btn" onclick="applyPreset('Extract arXiv citations & code repos', 'Research', 'papers, arxiv')">ArXiv Research</button>
+        </div>
+      </section>
+
+      <!-- Feedback Area -->
+      <div id="feedbackBox" class="feedback-box feedback-hidden" role="alert"></div>
+
+      <!-- Filters Section -->
+      <section class="filter-section">
+        <div class="filter-box">
+          <div class="filter-header">
+            <h3>Organize by:</h3>
+            <span id="activeFilterLabel" class="active-filter-indicator">Showing All</span>
+          </div>
+          <div class="filter-buttons">
+            <button class="btn btn-filter active" id="btnFilterAll" onclick="loadAll()">Show All</button>
+            <button class="btn btn-filter" onclick="filterBy('category', 'Data Analysis')">Data Analysis</button>
+            <button class="btn btn-filter" onclick="filterBy('category', 'Automation')">Automation</button>
+            <button class="btn btn-filter" onclick="filterBy('category', 'Customer Support')">Customer Support</button>
+            <button class="btn btn-filter" onclick="filterBy('category', 'Research')">Research</button>
+            <span class="filter-divider"></span>
+            <button class="btn btn-filter tag-filter" onclick="filterBy('tag', 'optimized')">#optimized</button>
+            <button class="btn btn-filter tag-filter" onclick="filterBy('tag', 'urgent')">#urgent</button>
+            <button class="btn btn-filter tag-filter" onclick="filterBy('tag', 'weather')">#weather</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Workflow List -->
+      <section class="list-section">
+        <div class="list-header">
+          <h2>Active Workflows</h2>
+          <span id="resultsCount" class="results-count">0 items</span>
+        </div>
+        <div id="workflowList" class="workflow-grid"></div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>AI Agent Workflow Optimizer &bull; Antigravity Runtime &bull; Local Storage Synchronized</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

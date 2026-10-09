@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova AI — Autonomous Agent Infrastructure</title>
+  <meta name="description" content="Build, benchmark, and deploy enterprise-grade autonomous AI agents with zero latency overhead.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Background Glow FX -->
+  <div class="bg-glow glow-top-left"></div>
+  <div class="bg-glow glow-bottom-right"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar container">
+      <a href="#" class="brand-logo">
+        <div class="brand-icon">✦</div>
+        <span>Nova<strong>AI</strong></span>
+        <span class="version-tag">v2.4</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#features">Features</a>
+        <a href="#sandbox">Live Sandbox</a>
+        <a href="#calculator">ROI Calculator</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+
+      <div class="nav-actions">
+        <button id="themeToggle" class="btn-icon" title="Toggle Theme" aria-label="Toggle Theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+        <a href="console.html" class="btn btn-secondary nav-cta-secondary">Console</a>
+        <a href="console.html" class="btn btn-primary nav-cta-primary">Launch Console</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section container">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        <span>Introducing Autonomous Orchestration Engine 2.4</span>
+        <span class="badge-arrow">→</span>
+      </div>
+
+      <h1 class="hero-title">
+        Deploy Autonomous AI Agents <br>
+        <span class="gradient-text">In Minutes, Not Months</span>
+      </h1>
+
+      <p class="hero-description">
+        Nova AI provides the distributed runtime, vector memory routing, and sandbox tooling 
+        to build reliable agentic workflows with sub-50ms latency and 99.9% tool call accuracy.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#pricing" class="btn btn-primary btn-large">Start Free Trial <span>→</span></a>
+        <a href="#sandbox" class="btn btn-glass btn-large">Try Interactive Sandbox</a>
+      </div>
+
+      <div class="social-proof-strip">
+        <p class="proof-label">POWERING AGENTIC INFRASTRUCTURE FOR 25,000+ BUILDERS AT</p>
+        <div class="proof-logos">
+          <span class="proof-item">▲ VERCELE</span>
+          <span class="proof-item">◈ SCALE</span>
+          <span class="proof-item">❖ LINEAR</span>
+          <span class="proof-item">⬡ DATADOG</span>
+          <span class="proof-item">◉ RETOOL</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Live Sandbox Section -->
+    <section id="sandbox" class="sandbox-section container">
+      <div class="section-header text-center">
+        <span class="section-tag">LIVE INTERACTIVE TERMINAL</span>
+        <h2 class="section-title">Experience Autonomous Execution</h2>
+        <p class="section-subtitle">Pick an agent scenario and watch real-time multi-step tool execution, reasoning steps, and output generation.</p>
+      </div>
+
+      <div class="terminal-container">
+        <!-- Terminal Header -->
+        <div class="terminal-bar">
+          <div class="terminal-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="terminal-title">nova-agent-runtime &mdash; bash &mdash; session #8492</div>
+          <div class="terminal-status"><span class="status-indicator"></span> ONLINE</div>
+        </div>
+
+        <!-- Terminal Presets -->
+        <div class="terminal-presets">
+          <span class="preset-label">Preset Workflows:</span>
+          <button class="preset-btn active" data-agent="market">📈 Financial Market Scout</button>
+          <button class="preset-btn" data-agent="security">🛡️ Cloud Security Auditor</button>
+          <button class="preset-btn" data-agent="support">💬 Auto Customer Escalation</button>
+        </div>
+
+        <!-- Terminal Content & Logs -->
+        <div class="terminal-screen" id="terminalScreen">
+          <div class="terminal-log" id="terminalOutput">
+            <!-- Simulated logs populate dynamically via script.js -->
+          </div>
+        </div>
+
+        <!-- Terminal Bottom Bar -->
+        <div class="terminal-footer">
+          <div class="terminal-stats">
+            <span>Latency: <strong id="termLatency">38ms</strong></span>
+            <span>Tools Executed: <strong id="termTools">4 / 4</strong></span>
+            <span>Tokens: <strong id="termTokens">1,420</strong></span>
+          </div>
+          <button id="runAgentBtn" class="btn btn-sm btn-primary">⚡ Re-run Scenario</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento Features Grid -->
+    <section id="features" class="features-section container">
+      <div class="section-header text-center">
+        <span class="section-tag">PLATFORM CAPABILITIES</span>
+        <h2 class="section-title">Built for Production-Grade Multi-Agent Systems</h2>
+        <p class="section-subtitle">Everything you need to ship resilient, self-healing, deterministic agent fleets.</p>
+      </div>
+
+      <div class="bento-grid">
+        <!-- Card 1 (Large) -->
+        <div class="bento-card bento-wide">
+          <div class="card-icon">⚡</div>
+          <h3>Dynamic Model &amp; Router Orchestration</h3>
+          <p>Nova intelligently cascades prompts across lightweight SLMs and heavy reasoning models to achieve 70% cost reduction without sacrificing task accuracy.</p>
+          <div class="bento-metric-row">
+            <div class="metric-box">
+              <span class="metric-num">&lt; 42ms</span>
+              <span class="metric-label">Routing Overhead</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-num">99.8%</span>
+              <span class="metric-label">Schema Compliance</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-num">68%</span>
+              <span class="metric-label">Average Cost Saved</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bento-card">
+          <div class="card-icon">🧠</div>
+          <h3>Persistent Episodic Memory</h3>
+          <p>Native vector-indexed semantic recall persists state across thousands of sessions with zero cache eviction overhead.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bento-card">
+          <div class="card-icon">🔒</div>
+          <h3>Isolated Sandboxed Execution</h3>
+          <p>Every tool execution and bash subprocess runs inside an ephemeral microVM with military-grade network isolation.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="bento-card">
+          <div class="card-icon">🔄</div>
+          <h3>Autonomous Self-Correction</h3>
+          <p>When an API schema changes or an error is returned, agents critique their own trace and re-synthesize correct arguments.</p>
+        </div>
+
+        <!-- Card 5 (Wide) -->
+        <div class="bento-card bento-wide">
+          <div class="card-icon">📊</div>
+          <h3>Full Observability &amp; Trace Replay</h3>
+          <p>Step through every reasoning chain, prompt injection safeguard, and tool invocation with high-resolution visual timelines and OpenTelemetry compliance.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive ROI Calculator Section -->
+    <section id="calculator" class="calculator-section container">
+      <div class="calc-card">
+        <div class="calc-header">
+          <span class="section-tag">VALUE CALCULATOR</span>
+          <h2>Calculate Your Organization's Engineering Savings</h2>
+          <p>See how much time and budget Nova AI unlocks for your engineering team.</p>
+        </div>
+
+        <div class="calc-grid">
+          <div class="calc-inputs">
+            <div class="calc-group">
+              <div class="calc-label-row">
+                <label for="devCount">Number of Software Engineers / Agents</label>
+                <span class="calc-val-display" id="devCountVal">15 Engineers</span>
+              </div>
+              <input type="range" id="devCount" min="2" max="150" value="15" class="calc-slider">
+            </div>
+
+            <div class="calc-group">
+              <div class="calc-label-row">
+                <label for="tasksPerMonth">Monthly Autonomous Workflows Run</label>
+                <span class="calc-val-display" id="tasksPerMonthVal">5,000 runs</span>
+              </div>
+              <input type="range" id="tasksPerMonth" min="500" max="50000" step="500" value="5000" class="calc-slider">
+            </div>
+
+            <div class="calc-group">
+              <div class="calc-label-row">
+                <label for="hourlyRate">Average Loaded Engineering Rate ($/hr)</label>
+                <span class="calc-val-display" id="hourlyRateVal">$85 / hr</span>
+              </div>
+              <input type="range" id="hourlyRate" min="40" max="200" step="5" value="85" class="calc-slider">
+            </div>
+          </div>
+
+          <div class="calc-results">
+            <div class="roi-stat-card primary">
+              <span class="roi-label">Estimated Annual Savings</span>
+              <span class="roi-number" id="annualSavings">$148,750</span>
+              <span class="roi-sub">in automated manual engineering time</span>
+            </div>
+
+            <div class="roi-sub-stats">
+              <div class="roi-mini-box">
+                <span class="mini-val" id="hoursSaved">1,750 hrs</span>
+                <span class="mini-lbl">Dev Hours Reclaimed / yr</span>
+              </div>
+              <div class="roi-mini-box">
+                <span class="mini-val" id="speedupFactor">6.4x</span>
+                <span class="mini-lbl">Faster Pipeline Velocity</span>
+              </div>
+            </div>
+
+            <a href="#pricing" class="btn btn-primary btn-block">Unlock These Savings Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section container">
+      <div class="section-header text-center">
+        <span class="section-tag">SIMPLE TRANSPARENT TIERS</span>
+        <h2 class="section-title">Scale Frictionlessly From Seed to Enterprise</h2>
+        <p class="section-subtitle">Predictable pricing based on task completions, not hidden token markups.</p>
+
+        <!-- Billing Toggle -->
+        <div class="billing-toggle-container">
+          <span class="billing-label" id="lblMonthly">Monthly</span>
+          <button class="billing-switch" id="billingToggle" aria-label="Toggle Billing Frequency">
+            <span class="switch-handle"></span>
+          </button>
+          <span class="billing-label active" id="lblAnnual">Annual <span class="discount-pill">Save 20%</span></span>
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <!-- Starter Tier -->
+        <div class="pricing-card">
+          <div class="tier-name">Developer</div>
+          <p class="tier-desc">For indie hackers and early-stage prototypes.</p>
+          <div class="price-box">
+            <span class="currency">$</span>
+            <span class="price-val" data-monthly="29" data-annual="24">24</span>
+            <span class="period">/ month</span>
+          </div>
+          <ul class="tier-features">
+            <li>✓ Up to 10,000 agent runs/mo</li>
+            <li>✓ Standard model routing</li>
+            <li>✓ 1GB vector memory</li>
+            <li>✓ Community Discord support</li>
+            <li class="disabled">✕ Dedicated VPC deployment</li>
+          </ul>
+          <button class="btn btn-glass btn-block" onclick="selectPlan('Developer')">Get Started</button>
+        </div>
+
+        <!-- Pro Tier (Featured) -->
+        <div class="pricing-card featured">
+          <div class="featured-badge">MOST POPULAR</div>
+          <div class="tier-name">Growth Team</div>
+          <p class="tier-desc">For scaling engineering teams shipping production agents.</p>
+          <div class="price-box">
+            <span class="currency">$</span>
+            <span class="price-val" data-monthly="99" data-annual="79">79</span>
+            <span class="period">/ month</span>
+          </div>
+          <ul class="tier-features">
+            <li>✓ Up to 100,000 agent runs/mo</li>
+            <li>✓ Ultra-fast neural model router</li>
+            <li>✓ Unlimited episodic memory &amp; traces</li>
+            <li>✓ Ephemeral microVM tool sandboxing</li>
+            <li>✓ Priority 24/7 Slack support</li>
+          </ul>
+          <button class="btn btn-primary btn-block" onclick="selectPlan('Growth Team')">Start 14-Day Free Trial</button>
+        </div>
+
+        <!-- Enterprise Tier -->
+        <div class="pricing-card">
+          <div class="tier-name">Enterprise</div>
+          <p class="tier-desc">For high-compliance organizations with dedicated clouds.</p>
+          <div class="price-box">
+            <span class="currency">$</span>
+            <span class="price-val" data-monthly="349" data-annual="279">279</span>
+            <span class="period">/ month</span>
+          </div>
+          <ul class="tier-features">
+            <li>✓ Unlimited agent workflows</li>
+            <li>✓ Self-hosted on AWS, GCP, or Azure</li>
+            <li>✓ Custom fine-tuned SLM weights</li>
+            <li>✓ SOC2 Type II &amp; HIPAA compliance</li>
+            <li>✓ Dedicated Solutions Architect &amp; SLA</li>
+          </ul>
+          <button class="btn btn-glass btn-block" onclick="selectPlan('Enterprise')">Contact Sales</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section container">
+      <div class="section-header text-center">
+        <span class="section-tag">CUSTOMER VALIDATION</span>
+        <h2 class="section-title">Trusted by Engineering Leaders</h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="quote">"Nova reduced our autonomous agent test failure rate from 14% to under 0.05%. The sandboxed microVM tool execution is the most robust in the industry."</p>
+          <div class="author-row">
+            <div class="avatar">ER</div>
+            <div>
+              <div class="author-name">Elena Rostova</div>
+              <div class="author-role">VP of AI Engineering, FinScale</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="quote">"Switching to Nova's dynamic neural routing cut our monthly OpenAI &amp; Anthropic bill by $32,000 while slashing median execution latency by 4x."</p>
+          <div class="author-row">
+            <div class="avatar">MK</div>
+            <div>
+              <div class="author-name">Marcus Vance</div>
+              <div class="author-role">CTO, DataSprint</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <p class="quote">"The episodic vector memory solved our biggest nightmare: agents hallucinating across long conversational sessions. It just works out of the box."</p>
+          <div class="author-row">
+            <div class="avatar">SL</div>
+            <div>
+              <div class="author-name">Sarah Lin</div>
+              <div class="author-role">Lead Architect, Synthetix Labs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section id="faq" class="faq-section container">
+      <div class="section-header text-center">
+        <span class="section-tag">FREQUENTLY ASKED QUESTIONS</span>
+        <h2 class="section-title">Everything You Need to Know</h2>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How does Nova AI integrate with my existing LLM providers?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Nova is model-agnostic. You can bring your own API keys for OpenAI, Anthropic, Gemini, Mistral, or self-hosted vLLM/Ollama endpoints. Nova handles the intelligent routing, retries, and fallback automatically.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What happens if an agent tool execution encounters an error?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Our autonomous self-correction loop catches runtime failures, passes the structured stack trace back into the reasoning context, and attempts intelligent schema repair before ever surfacing an error to the user.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is my proprietary customer data stored or used for model training?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Never. Nova enforces zero-data-retention on prompt payloads. All tool sandboxes run inside stateless, zero-trust microVMs destroyed immediately after execution. We are SOC2 Type II and GDPR compliant.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I deploy Nova on my company's private cloud VPC?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. Our Enterprise tier includes Helm charts and Terraform modules for one-click deployment inside AWS (EKS), GCP (GKE), or Microsoft Azure.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="cta-banner container">
+      <div class="cta-box">
+        <h2>Ready to Supercharge Your Agent Fleet?</h2>
+        <p>Join thousands of engineers deploying reliable autonomous systems today. No credit card required.</p>
+        
+        <form class="cta-form" id="newsletterForm" onsubmit="handleSignup(event)">
+          <input type="email" id="emailInput" placeholder="Enter your work email" required>
+          <button type="submit" class="btn btn-primary">Start Building Free <span>→</span></button>
+        </form>
+        <span class="cta-guarantee">🔒 Instant deployment &bull; 14-day unrestricted trial &bull; Cancel anytime</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <div class="brand-icon">✦</div>
+          <span>Nova<strong>AI</strong></span>
+        </div>
+        <p>The sovereign runtime and orchestration layer for production autonomous agents.</p>
+        <div class="system-status">
+          <span class="status-dot green"></span>
+          <span>All Global Clusters Operational (99.98%)</span>
+        </div>
+      </div>
+
+      <div class="footer-links-grid">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#features">Orchestrator</a>
+          <a href="#sandbox">Live Sandbox</a>
+          <a href="#calculator">ROI Calculator</a>
+          <a href="#pricing">Pricing Plans</a>
+          <a href="#">SDK Reference</a>
+        </div>
+        <div class="footer-col">
+          <h4>Models</h4>
+          <a href="#">Gemini 1.5 Pro</a>
+          <a href="#">Claude 3.5 Sonnet</a>
+          <a href="#">GPT-4o</a>
+          <a href="#">DeepSeek R1</a>
+          <a href="#">Llama 3.3</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Careers (We're Hiring)</a>
+          <a href="#">Security &amp; SOC2</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; 2026 Nova AI Systems, Inc. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Twitter">Twitter / X</a> &bull;
+        <a href="#" aria-label="GitHub">GitHub</a> &bull;
+        <a href="#" aria-label="Discord">Discord Community</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
